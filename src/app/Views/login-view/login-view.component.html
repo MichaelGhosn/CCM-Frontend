@@ -1,0 +1,12 @@
+<div fxLayout="column" fxLayoutAlign="center stretch" style="height: 100%">
+
+  <div fxLayout="row wrap" fxLayoutAlign="space-around">
+
+    <app-welcome-text fxFlex="30" fxFlex.lt-md="100"></app-welcome-text>
+    <app-login-form fxFlex="20" fxFlex.lt-md="100" (loginChange)="Authenticate($event)"></app-login-form>
+
+  </div>
+
+</div>
+
+
