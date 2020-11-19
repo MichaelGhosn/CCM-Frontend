@@ -1,0 +1,10 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>{{title}}</span>
+    <span class="example-spacer"></span>
+    <app-translate-section></app-translate-section>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-progress-bar mode="indeterminate" *ngIf="notificationService.dataLoading"></mat-progress-bar>
+

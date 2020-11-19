@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {NotificationService} from './Services/Notification/notification.service';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +6,8 @@ import {NotificationService} from './Services/Notification/notification.service'
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  title = 'CCM';
 
-  constructor(public notificationService: NotificationService) {}
+  constructor() {}
 
-
-  title = 'CCM-Frontend';
 }

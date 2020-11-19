@@ -13,11 +13,18 @@ import {MatButtonModule} from '@angular/material/button';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AdminViewComponent } from './Views/admin-view/admin-view.component';
 import { UserViewComponent } from './Views/user-view/user-view.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { TranslateSectionComponent } from './Components/toolbar/translate-section/translate-section.component';
+import { ToolbarComponent } from './Components/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +34,8 @@ import { UserViewComponent } from './Views/user-view/user-view.component';
     LoginFormComponent,
     AdminViewComponent,
     UserViewComponent,
+    TranslateSectionComponent,
+    ToolbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,9 +49,24 @@ import { UserViewComponent } from './Views/user-view/user-view.component';
     MatInputModule,
     HttpClientModule,
     MatProgressBarModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatMenuModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
+  return new TranslateHttpLoader(http);
+}

@@ -1,0 +1,13 @@
+{
+  "welcome": {
+    "title": "Corona Gestion Companie",
+    "description": "Quand meme une pandemie globale ne peut nous empecher d'aller au travail"
+  },
+  "login": {
+    "title": "Connectez vous",
+    "username": "Nom utilisateur",
+    "password": "Mot de passe",
+    "login": "Connecter",
+    "invalid": "Email invalide"
+  }
+}

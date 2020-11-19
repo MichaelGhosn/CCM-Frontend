@@ -7,6 +7,7 @@ import {NotificationService} from '../../Services/Notification/notification.serv
 import {Router} from '@angular/router';
 import jwt_decode from 'jwt-decode';
 import {ITokenModel} from '../../Models/Authentication/ITokenModel';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login-view',
@@ -17,7 +18,8 @@ export class LoginViewComponent implements OnInit {
 
   constructor(private authenticationService: AuthenticationService,
               private notificationService: NotificationService,
-              private router: Router) { }
+              private router: Router,
+              private translate: TranslateService) { }
 
   ngOnInit(): void {}
 
@@ -43,7 +45,7 @@ export class LoginViewComponent implements OnInit {
         }
 
       } else {
-        this.notificationService.DisplaySnackBar('Incorrect username or password');
+        this.notificationService.DisplaySnackBar(this.translate.currentLang === 'en' ? 'Incorrect username or password' : 'Identifiant ou mot de passe incorrecte');
       }
 
 
