@@ -5,6 +5,7 @@ import {AddUserDialogComponent} from '../../Components/add-user-dialog/add-user-
 import {AdminService} from '../../Services/Admin/admin.service';
 import {NotificationService} from '../../Services/Notification/notification.service';
 import {IResponseModel} from '../../Models/IResponseModel';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-admin-view',
@@ -41,9 +42,21 @@ export class AdminViewComponent implements OnInit {
         });
       }
     },
+    {
+      name: 'Logout',
+      icon: 'backspace',
+      class: 'actions-class',
+      action: () => {
+        this.router.navigate(['login']);
+        localStorage.removeItem('_token');
+      }
+    },
   ];
 
-  constructor(private dialog: MatDialog, private adminService: AdminService, private notificationService: NotificationService) { }
+  constructor(private dialog: MatDialog,
+              private adminService: AdminService,
+              private notificationService: NotificationService,
+              private router: Router) { }
 
   ngOnInit(): void {
   }

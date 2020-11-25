@@ -32,7 +32,7 @@ export class LoginViewComponent implements OnInit {
       this.notificationService.dataLoading = false;
 
       if (response.success) {
-        localStorage.setItem('_token', JSON.stringify(response.data.jwt));
+        localStorage.setItem('_token', response.data.jwt);
         const token = jwt_decode<ITokenModel>(response.data.jwt);
 
         switch (token.RoleName.toLowerCase()) {

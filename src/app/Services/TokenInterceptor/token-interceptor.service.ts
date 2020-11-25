@@ -9,11 +9,14 @@ export class TokenInterceptorService implements HttpInterceptor{
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    req = req.clone({
-      setHeaders: {
-        Authorization: `Bearer ${localStorage.getItem('_token').replace('"', '')}`
-      }
-    });
+    if (localStorage.getItem('_token')) {
+      req = req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${localStorage.getItem('_token')}`
+        }
+      });
+
+    }
 
     return next.handle(req);
   }

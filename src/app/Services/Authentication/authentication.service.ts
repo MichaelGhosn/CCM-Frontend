@@ -5,8 +5,7 @@ import {ILoginForm} from '../../Models/Authentication/ILoginForm';
 import {IResponseModel} from '../../Models/IResponseModel';
 import {IAuthenticated} from '../../Models/Authentication/IAuthenticated';
 import {Observable} from 'rxjs';
-import {ITokenModel} from '../../Models/Authentication/ITokenModel';
-import jwt_decode from 'jwt-decode';
+
 
 @Injectable({
   providedIn: 'root'
