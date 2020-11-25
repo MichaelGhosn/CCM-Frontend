@@ -7,6 +7,9 @@ import {NotificationService} from '../../Services/Notification/notification.serv
 import {IResponseModel} from '../../Models/IResponseModel';
 import {Router} from '@angular/router';
 import {IAddOrganisation} from '../../Models/Admin/IAddOrganisation';
+import {forkJoin} from 'rxjs';
+import {IGetOrganisations} from '../../Models/Admin/IGetOrganisations';
+import {IGetRoles} from '../../Models/Admin/IGetRoles';
 
 @Component({
   selector: 'app-admin-view',
@@ -28,7 +31,7 @@ export class AdminViewComponent implements OnInit {
            if (result) {
              this.adminService.AddOrganisation(result).subscribe((response: IResponseModel<string>) => {
                this.notificationService.DisplaySnackBar(response.description);
-             }, error => this.notificationService.DisplaySnackBar(error.Description));
+             }, error => console.error(error));
            }
         });
       }
@@ -38,9 +41,14 @@ export class AdminViewComponent implements OnInit {
       icon: 'group_add',
       class: 'actions-class',
       action: () => {
-        const addUserDialog = this.dialog.open(AddUserDialogComponent, {
-           width: '60%'
-        });
+
+        forkJoin([this.adminService.GetOrganisations(), this.adminService.GetRoles()])
+          .subscribe( (results: [IResponseModel<Array<IGetOrganisations>>, IResponseModel<Array<IGetRoles>>]) => {
+            const addUserDialog = this.dialog.open(AddUserDialogComponent, {
+              width: '60%',
+              data: results.map(x => x.data)
+            });
+          });
       }
     },
     {
