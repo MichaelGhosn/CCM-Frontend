@@ -13,7 +13,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AdminViewComponent } from './Views/admin-view/admin-view.component';
@@ -25,6 +25,12 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { TranslateSectionComponent } from './Components/toolbar/translate-section/translate-section.component';
 import { ToolbarComponent } from './Components/toolbar/toolbar.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import { AddOrganisationDialogComponent } from './Components/add-company-dialog/add-organisation-dialog.component';
+import { AddUserDialogComponent } from './Components/add-user-dialog/add-user-dialog.component';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {TokenInterceptorService} from './Services/TokenInterceptor/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -36,6 +42,8 @@ import { ToolbarComponent } from './Components/toolbar/toolbar.component';
     UserViewComponent,
     TranslateSectionComponent,
     ToolbarComponent,
+    AddOrganisationDialogComponent,
+    AddUserDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,9 +67,19 @@ import { ToolbarComponent } from './Components/toolbar/toolbar.component';
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    MatSidenavModule,
+    MatListModule,
+    MatDialogModule
   ],
-  providers: [],
+  entryComponents: [AddOrganisationDialogComponent, AddUserDialogComponent],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
