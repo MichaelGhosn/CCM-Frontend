@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-add-organisation-dialog',
@@ -8,9 +9,15 @@ import {MatDialogRef} from '@angular/material/dialog';
 })
 export class AddOrganisationDialogComponent implements OnInit {
 
+  newOrganisationName: FormControl = new FormControl('', [Validators.required, Validators.minLength(3)]);
+
   constructor( private dialogRef: MatDialogRef<AddOrganisationDialogComponent>) { }
 
   ngOnInit(): void {
+  }
+
+  closeDialog(isSubmitted?: boolean): void {
+      this.dialogRef.close(isSubmitted ? this.newOrganisationName.value : null);
   }
 
 }

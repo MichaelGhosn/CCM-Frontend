@@ -1,1 +1,11 @@
-<p>add-organisation-dialog works!</p>
+<form class="example-form" fxFlex="row" fxLayoutGap="2">
+  <mat-form-field class="example-full-width" fxFlex>
+    <mat-label>New Organisation Name</mat-label>
+    <input matInput placeholder="Organisation Name" [formControl]="newOrganisationName">
+  </mat-form-field>
+
+  <section fxLayoutAlign="end center">
+    <button mat-raised-button (click)="closeDialog()">Cancel</button>
+    <button mat-raised-button (click)="closeDialog(true)">Add</button>
+  </section>
+</form>
