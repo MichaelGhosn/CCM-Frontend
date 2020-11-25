@@ -17,7 +17,7 @@ export class AddOrganisationDialogComponent implements OnInit {
   }
 
   closeDialog(isSubmitted?: boolean): void {
-      this.dialogRef.close(isSubmitted ? this.newOrganisationName.value : null);
+      this.dialogRef.close(isSubmitted ? { name: this.newOrganisationName.value } : null);
   }
 
 }

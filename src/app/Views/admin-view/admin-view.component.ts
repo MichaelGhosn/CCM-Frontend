@@ -6,6 +6,7 @@ import {AdminService} from '../../Services/Admin/admin.service';
 import {NotificationService} from '../../Services/Notification/notification.service';
 import {IResponseModel} from '../../Models/IResponseModel';
 import {Router} from '@angular/router';
+import {IAddOrganisation} from '../../Models/Admin/IAddOrganisation';
 
 @Component({
   selector: 'app-admin-view',
@@ -23,9 +24,9 @@ export class AdminViewComponent implements OnInit {
         const addOrganisationDialog = this.dialog.open(AddOrganisationDialogComponent, {
           width: '40%'
         });
-        addOrganisationDialog.afterClosed().subscribe((result: string) => {
+        addOrganisationDialog.afterClosed().subscribe((result: IAddOrganisation) => {
            if (result) {
-             this.adminService.AddCompany(result).subscribe((response: IResponseModel<string>) => {
+             this.adminService.AddOrganisation(result).subscribe((response: IResponseModel<string>) => {
                this.notificationService.DisplaySnackBar(response.description);
              }, error => this.notificationService.DisplaySnackBar(error.Description));
            }
