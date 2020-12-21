@@ -8,8 +8,10 @@ import {IResponseModel} from '../../Models/IResponseModel';
 import {Router} from '@angular/router';
 import {IAddOrganisation} from '../../Models/Admin/IAddOrganisation';
 import {forkJoin} from 'rxjs';
-import {IGetOrganisations} from '../../Models/Admin/IGetOrganisations';
-import {IGetRoles} from '../../Models/Admin/IGetRoles';
+import {IGetOrganisation} from '../../Models/Admin/IGetOrganisation';
+import {IGetRole} from '../../Models/Admin/IGetRole';
+import {IAddUser} from '../../Models/Admin/IAddUser';
+import {ISidenavAction} from '../../Models/Sidenav/ISidenavAction';
 
 @Component({
   selector: 'app-admin-view',
@@ -18,7 +20,7 @@ import {IGetRoles} from '../../Models/Admin/IGetRoles';
 })
 export class AdminViewComponent implements OnInit {
 
-  actions = [
+  actions: Array<ISidenavAction> = [
     {
       name: 'Add Organisation',
       icon: 'add_location_alt',
@@ -43,10 +45,17 @@ export class AdminViewComponent implements OnInit {
       action: () => {
 
         forkJoin([this.adminService.GetOrganisations(), this.adminService.GetRoles()])
-          .subscribe( (results: [IResponseModel<Array<IGetOrganisations>>, IResponseModel<Array<IGetRoles>>]) => {
+          .subscribe( (results: [IResponseModel<Array<IGetOrganisation>>, IResponseModel<Array<IGetRole>>]) => {
             const addUserDialog = this.dialog.open(AddUserDialogComponent, {
               width: '60%',
               data: results.map(x => x.data)
+            });
+            addUserDialog.afterClosed().subscribe((result: IAddUser) => {
+              if (result) {
+                this.adminService.AddUser(result).subscribe((response: IResponseModel<string>) => {
+                  this.notificationService.DisplaySnackBar(response.description);
+                }, error => console.error(error));
+              }
             });
           });
       }

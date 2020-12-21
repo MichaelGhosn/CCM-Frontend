@@ -31,6 +31,9 @@ import { AddOrganisationDialogComponent } from './Components/add-company-dialog/
 import { AddUserDialogComponent } from './Components/add-user-dialog/add-user-dialog.component';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {TokenInterceptorService} from './Services/TokenInterceptor/token-interceptor.service';
+import {MatSelectModule} from '@angular/material/select';
+import { SidenavComponent } from './Components/sidenav/sidenav.component';
+import { AddMapDialogComponent } from './Components/add-map-dialog/add-map-dialog.component';
 
 @NgModule({
   declarations: [
@@ -44,35 +47,39 @@ import {TokenInterceptorService} from './Services/TokenInterceptor/token-interce
     ToolbarComponent,
     AddOrganisationDialogComponent,
     AddUserDialogComponent,
+    SidenavComponent,
+    SidenavComponent,
+    AddMapDialogComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    FlexModule,
-    MatCardModule,
-    MatButtonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    HttpClientModule,
-    MatProgressBarModule,
-    MatSnackBarModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatMenuModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
-    MatSidenavModule,
-    MatListModule,
-    MatDialogModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        FlexModule,
+        MatCardModule,
+        MatButtonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        HttpClientModule,
+        MatProgressBarModule,
+        MatSnackBarModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatMenuModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        }),
+        MatSidenavModule,
+        MatListModule,
+        MatDialogModule,
+        MatSelectModule,
+    ],
   entryComponents: [AddOrganisationDialogComponent, AddUserDialogComponent],
   providers: [
     {

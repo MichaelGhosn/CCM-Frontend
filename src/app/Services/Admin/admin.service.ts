@@ -4,29 +4,35 @@ import {AuthenticationService} from '../Authentication/authentication.service';
 import {Observable} from 'rxjs';
 import {IResponseModel} from '../../Models/IResponseModel';
 import {IAddOrganisation} from '../../Models/Admin/IAddOrganisation';
-import {IGetRoles} from '../../Models/Admin/IGetRoles';
-import {IGetOrganisations} from '../../Models/Admin/IGetOrganisations';
+import {IGetRole} from '../../Models/Admin/IGetRole';
+import {IGetOrganisation} from '../../Models/Admin/IGetOrganisation';
+import {IAddUser} from '../../Models/Admin/IAddUser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
 
-  constructor(private http: HttpClient, private authenticationNService: AuthenticationService) {}
+  constructor(private http: HttpClient, private authenticationService: AuthenticationService) {}
 
   AddOrganisation(newOrganisation: IAddOrganisation): Observable<IResponseModel<string>> {
-    return this.http.post<IResponseModel<string>>(this.authenticationNService.backendApi + '/Organisation',
-      newOrganisation, this.authenticationNService.httpOptions);
+    return this.http.post<IResponseModel<string>>(this.authenticationService.backendApi + '/Organisation',
+      newOrganisation, this.authenticationService.httpOptions);
   }
 
-  GetOrganisations(): Observable<IResponseModel<Array<IGetOrganisations>>> {
-    return this.http.get<IResponseModel<Array<IGetOrganisations>>>(this.authenticationNService.backendApi + '/Organisation',
-      this.authenticationNService.httpOptions);
+  GetOrganisations(): Observable<IResponseModel<Array<IGetOrganisation>>> {
+    return this.http.get<IResponseModel<Array<IGetOrganisation>>>(this.authenticationService.backendApi + '/Organisation',
+      this.authenticationService.httpOptions);
   }
 
-  GetRoles(): Observable<IResponseModel<Array<IGetRoles>>> {
-     return this.http.get<IResponseModel<Array<IGetRoles>>>(this.authenticationNService.backendApi + '/Role',
-       this.authenticationNService.httpOptions);
+  GetRoles(): Observable<IResponseModel<Array<IGetRole>>> {
+     return this.http.get<IResponseModel<Array<IGetRole>>>(this.authenticationService.backendApi + '/Role',
+       this.authenticationService.httpOptions);
+  }
+
+  AddUser(newUser: IAddUser): Observable<IResponseModel<string>> {
+    return this.http.post<IResponseModel<string>>(this.authenticationService.backendApi + '/User', newUser,
+      this.authenticationService.httpOptions);
   }
 
 
