@@ -27,7 +27,7 @@ import { TranslateSectionComponent } from './Components/toolbar/translate-sectio
 import { ToolbarComponent } from './Components/toolbar/toolbar.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
-import { AddOrganisationDialogComponent } from './Components/add-company-dialog/add-organisation-dialog.component';
+import { AddOrganisationDialogComponent } from './Components/add-organisation-dialog/add-organisation-dialog.component';
 import { AddUserDialogComponent } from './Components/add-user-dialog/add-user-dialog.component';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {TokenInterceptorService} from './Services/TokenInterceptor/token-interceptor.service';
@@ -39,6 +39,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import { AdjustOpeningTimeDialogComponent } from './Components/adjust-opening-time-dialog/adjust-opening-time-dialog.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
     SidenavComponent,
     AddMapDialogComponent,
     ViewMapDialogComponent,
+    AdjustOpeningTimeDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -90,7 +92,8 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
     MatNativeDateModule,
     NgxMaterialTimepickerModule,
   ],
-  entryComponents: [AddOrganisationDialogComponent, AddUserDialogComponent],
+  entryComponents: [AddOrganisationDialogComponent, AddUserDialogComponent, ViewMapDialogComponent,
+          AddMapDialogComponent, AdjustOpeningTimeDialogComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

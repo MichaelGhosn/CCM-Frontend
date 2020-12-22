@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import {AddOrganisationDialogComponent} from '../../Components/add-company-dialog/add-organisation-dialog.component';
+import {AddOrganisationDialogComponent} from '../../Components/add-organisation-dialog/add-organisation-dialog.component';
 import {AddUserDialogComponent} from '../../Components/add-user-dialog/add-user-dialog.component';
 import {AdminService} from '../../Services/Admin/admin.service';
 import {NotificationService} from '../../Services/Notification/notification.service';

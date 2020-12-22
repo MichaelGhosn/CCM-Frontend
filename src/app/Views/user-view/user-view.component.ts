@@ -7,11 +7,12 @@ import {ITokenModel} from '../../Models/Authentication/ITokenModel';
 import {ManagementService} from '../../Services/User/management.service';
 import {MatDialog} from '@angular/material/dialog';
 import {AddMapDialogComponent} from '../../Components/add-map-dialog/add-map-dialog.component';
-import {IAddMap} from '../../Models/Recruiter/IAddMap';
+import {IAddMap} from '../../Models/Management/IAddMap';
 import {NotificationService} from '../../Services/Notification/notification.service';
 import {IMap} from '../../Models/User/IMap';
 import {environment} from '../../../environments/environment';
 import {ViewMapDialogComponent} from '../../Components/view-map-dialog/view-map-dialog.component';
+import {AdjustOpeningTimeDialogComponent} from '../../Components/adjust-opening-time-dialog/adjust-opening-time-dialog.component';
 
 @Component({
   selector: 'app-user-view',
@@ -78,6 +79,18 @@ export class UserViewComponent implements OnInit {
                if (result) {
                  this.managementService.AddMap(result).subscribe(response => {
                    this.notificationService.DisplaySnackBar(response.description);
+
+                   const seats = [];
+                   for (let i = 1; i <= result.Capacity ; i++) {
+                     seats.push({
+                       mapId: response.data.mapId,
+                       name: 'Seat ' + i
+                     });
+                   }
+
+                   this.managementService.AddSeats(seats).subscribe();
+
+                   this.fetchMaps();
                  }, error => console.error(error));
                }
              });
@@ -99,6 +112,15 @@ export class UserViewComponent implements OnInit {
         this.userService.AddReservation(result).subscribe(response => {
           this.notificationService.DisplaySnackBar(response.description);
         });
+      }
+    });
+  }
+
+  adjustOpeningTime(mapId: number): void {
+    const openingTimeDialog = this.dialog.open(AdjustOpeningTimeDialogComponent, {
+      width: '100%',
+      data: {
+        mapId
       }
     });
   }

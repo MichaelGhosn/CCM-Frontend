@@ -23,7 +23,7 @@ export class AuthenticationService {
   constructor(private http: HttpClient) { }
 
   Authenticate(credentials: ILoginForm): Observable<IResponseModel<IAuthenticated>> {
-      return this.http.post<IResponseModel<IAuthenticated>>(this.backendApi + '/User/authenticate', credentials, this.httpOptions);
+      return this.http.post<IResponseModel<IAuthenticated>>(this.backendApi + '/Users/authenticate', credentials, this.httpOptions);
   }
 
 }

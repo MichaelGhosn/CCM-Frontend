@@ -16,22 +16,22 @@ export class AdminService {
   constructor(private http: HttpClient, private authenticationService: AuthenticationService) {}
 
   AddOrganisation(newOrganisation: IAddOrganisation): Observable<IResponseModel<string>> {
-    return this.http.post<IResponseModel<string>>(this.authenticationService.backendApi + '/Organisation',
+    return this.http.post<IResponseModel<string>>(this.authenticationService.backendApi + '/Organisations',
       newOrganisation, this.authenticationService.httpOptions);
   }
 
   GetOrganisations(): Observable<IResponseModel<Array<IGetOrganisation>>> {
-    return this.http.get<IResponseModel<Array<IGetOrganisation>>>(this.authenticationService.backendApi + '/Organisation',
+    return this.http.get<IResponseModel<Array<IGetOrganisation>>>(this.authenticationService.backendApi + '/Organisations',
       this.authenticationService.httpOptions);
   }
 
   GetRoles(): Observable<IResponseModel<Array<IGetRole>>> {
-     return this.http.get<IResponseModel<Array<IGetRole>>>(this.authenticationService.backendApi + '/Role',
+     return this.http.get<IResponseModel<Array<IGetRole>>>(this.authenticationService.backendApi + '/Roles',
        this.authenticationService.httpOptions);
   }
 
   AddUser(newUser: IAddUser): Observable<IResponseModel<string>> {
-    return this.http.post<IResponseModel<string>>(this.authenticationService.backendApi + '/User', newUser,
+    return this.http.post<IResponseModel<string>>(this.authenticationService.backendApi + '/Users', newUser,
       this.authenticationService.httpOptions);
   }
 
