@@ -9,6 +9,9 @@ import {MatDialog} from '@angular/material/dialog';
 import {AddMapDialogComponent} from '../../Components/add-map-dialog/add-map-dialog.component';
 import {IAddMap} from '../../Models/Recruiter/IAddMap';
 import {NotificationService} from '../../Services/Notification/notification.service';
+import {IMap} from '../../Models/User/IMap';
+import {environment} from '../../../environments/environment';
+import {ViewMapDialogComponent} from '../../Components/view-map-dialog/view-map-dialog.component';
 
 @Component({
   selector: 'app-user-view',
@@ -18,6 +21,8 @@ import {NotificationService} from '../../Services/Notification/notification.serv
 export class UserViewComponent implements OnInit {
 
   isManagement = false;
+
+  maps: Array<IMap> = [];
 
   actions: Array<ISidenavAction> = [
     {
@@ -37,11 +42,25 @@ export class UserViewComponent implements OnInit {
               private dialog: MatDialog,
               private notificationService: NotificationService) {
    this.validateIsManagement();
+
+   this.fetchMaps();
   }
 
   ngOnInit(): void {
   }
 
+  fetchMaps(): void {
+    this.userService.GetMapsOfOrganisation(jwt_decode<ITokenModel>(localStorage.getItem('_token')).OrganisationId)
+      .subscribe(response => {
+        this.maps = response.data.map(map => {
+          return {
+            ...map,
+            image: environment.backendUrl + '/images/maps/' + map.image
+          };
+        });
+        this.notificationService.DisplaySnackBar(response.description);
+      });
+  }
 
   validateIsManagement(): void {
     this.isManagement = jwt_decode<ITokenModel>(localStorage.getItem('_token')).RoleName.toLowerCase() === 'management';
@@ -65,6 +84,23 @@ export class UserViewComponent implements OnInit {
         }
       });
     }
+  }
+
+  viewMap(mapId: number): void {
+    const viewMapDialog = this.dialog.open(ViewMapDialogComponent, {
+      width: '100%',
+      data: {
+        mapId
+      }
+    });
+
+    viewMapDialog.afterClosed().subscribe(result => {
+      if (result) {
+        this.userService.AddReservation(result).subscribe(response => {
+          this.notificationService.DisplaySnackBar(response.description);
+        });
+      }
+    });
   }
 
 }

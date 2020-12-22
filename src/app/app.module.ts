@@ -34,6 +34,11 @@ import {TokenInterceptorService} from './Services/TokenInterceptor/token-interce
 import {MatSelectModule} from '@angular/material/select';
 import { SidenavComponent } from './Components/sidenav/sidenav.component';
 import { AddMapDialogComponent } from './Components/add-map-dialog/add-map-dialog.component';
+import { ViewMapDialogComponent } from './Components/view-map-dialog/view-map-dialog.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 @NgModule({
   declarations: [
@@ -50,36 +55,41 @@ import { AddMapDialogComponent } from './Components/add-map-dialog/add-map-dialo
     SidenavComponent,
     SidenavComponent,
     AddMapDialogComponent,
+    ViewMapDialogComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        FlexModule,
-        MatCardModule,
-        MatButtonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        HttpClientModule,
-        MatProgressBarModule,
-        MatSnackBarModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatMenuModule,
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: HttpLoaderFactory,
-                deps: [HttpClient]
-            }
-        }),
-        MatSidenavModule,
-        MatListModule,
-        MatDialogModule,
-        MatSelectModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    FlexModule,
+    MatCardModule,
+    MatButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    HttpClientModule,
+    MatProgressBarModule,
+    MatSnackBarModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatMenuModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
+    MatSidenavModule,
+    MatListModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatExpansionModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NgxMaterialTimepickerModule,
+  ],
   entryComponents: [AddOrganisationDialogComponent, AddUserDialogComponent],
   providers: [
     {

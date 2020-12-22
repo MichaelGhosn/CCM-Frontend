@@ -1,0 +1,100 @@
+<div fxLayout="row wrap" fxLayoutAlign="space-between center">
+
+
+  <mat-accordion class="example-headers-align"  fxFlex="100">
+
+    <mat-expansion-panel hideToggle>
+
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Opening Times
+        </mat-panel-title>
+        <mat-panel-description>
+          Check map opening schedule
+          <mat-icon>date_range</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <table style="width: 100%">
+        <tr>
+          <th>Day</th>
+          <th>Opening Time</th>
+          <th>Closing Time</th>
+        </tr>
+        <tr *ngFor="let day of mapAvailableTimes">
+          <td>{{day.day}}</td>
+          <td>{{day.opening}}</td>
+          <td>{{day.closing}}</td>
+        </tr>
+      </table>
+
+
+    </mat-expansion-panel>
+
+  </mat-accordion>
+
+
+
+  <mat-accordion class="example-headers-align"  fxFlex="100">
+
+    <mat-expansion-panel hideToggle>
+
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Reserve
+        </mat-panel-title>
+        <mat-panel-description>
+          Add Reservation
+          <mat-icon>add_alert</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+
+      <form [formGroup]="addReservationFormGroup" style="width: 100%" fxLayout="row wrap" fxLayoutAlign="space-between center">
+
+
+        <mat-form-field appearance="standard" fxFlex="49">
+          <mat-label>Seat</mat-label>
+          <mat-select formControlName="seatIdFormControl">
+            <mat-option *ngFor="let seat of mapAvailableSeats" [value]="seat.seatId">
+              {{seat.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" fxFlex="49">
+          <mat-label>Reservation Date</mat-label>
+          <input matInput [matDatepicker]="reservationDatePicker" formControlName="reservationDateFormControl">
+          <mat-datepicker-toggle matSuffix [for]="reservationDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #reservationDatePicker></mat-datepicker>
+        </mat-form-field>
+
+        <div fxFlex="49">
+            <mat-label>Start</mat-label>
+            <ngx-timepicker-field  formControlName="startHourFormControl" [format]=24></ngx-timepicker-field>
+        </div>
+
+        <div fxFlex="49">
+            <mat-label>End</mat-label>
+            <ngx-timepicker-field formControlName="endHourFormControl" [format]=24></ngx-timepicker-field>
+        </div>
+
+
+
+            <div fxLayout="row" fxFlex  fxLayoutAlign="end" fxLayoutGap="10">
+              <button mat-raised-button (click)="save()">Submit</button>&nbsp;
+        <!--      <button mat-raised-button (click)="cancel()">Cancel</button>-->
+            </div>
+
+      </form>
+
+
+
+    </mat-expansion-panel>
+
+  </mat-accordion>
+
+
+
+</div>
+
