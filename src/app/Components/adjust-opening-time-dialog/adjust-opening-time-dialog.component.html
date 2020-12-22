@@ -6,22 +6,22 @@
 
       <mat-expansion-panel-header>
         <mat-panel-title>
-          Opening Times
+          {{'Opening Times' | translate}}
         </mat-panel-title>
         <mat-panel-description>
-          Check map opening schedule
+          {{'Check map opening schedule' | translate}}
           <mat-icon>date_range</mat-icon>
         </mat-panel-description>
       </mat-expansion-panel-header>
 
       <table style="width: 100%">
         <tr>
-          <th>Day</th>
-          <th>Opening Time</th>
-          <th>Closing Time</th>
+          <th>{{'Day' | translate}}</th>
+          <th>{{'Opening Time' | translate}}</th>
+          <th>{{'Closing Time' | translate}}</th>
         </tr>
         <tr *ngFor="let day of mapAvailableTimes">
-          <td>{{day.day}}</td>
+          <td>{{day.day | translate}}</td>
           <td>{{day.opening}}</td>
           <td>{{day.closing}}</td>
         </tr>
@@ -40,10 +40,10 @@
 
       <mat-expansion-panel-header>
         <mat-panel-title>
-          Opening Time
+          {{'Opening Time' | translate}}
         </mat-panel-title>
         <mat-panel-description>
-          Add/Update Opening Time
+          {{'Add/Update Opening Time' | translate}}
           <mat-icon>add_alert</mat-icon>
         </mat-panel-description>
       </mat-expansion-panel-header>
@@ -53,29 +53,29 @@
 
 
         <mat-form-field appearance="standard" fxFlex="100">
-          <mat-label>Day</mat-label>
+          <mat-label>{{'Day' | translate}}</mat-label>
           <mat-select formControlName="dayIdFormControl">
             <mat-option *ngFor="let day of days" [value]="day.id">
-              {{day.name}}
+              {{day.name | translate}}
             </mat-option>
           </mat-select>
         </mat-form-field>
 
 
         <div fxFlex="49">
-          <mat-label>Opening Hour</mat-label>
+          <mat-label>{{'Opening Hour' | translate}}</mat-label>
           <ngx-timepicker-field  formControlName="openingHourFormControl" [format]=24></ngx-timepicker-field>
         </div>
 
         <div fxFlex="49">
-          <mat-label>Closing Hour</mat-label>
+          <mat-label>{{'Closing Hour' | translate}}</mat-label>
           <ngx-timepicker-field formControlName="closingHourFormControl" [format]=24></ngx-timepicker-field>
         </div>
 
 
 
         <div fxLayout="row" fxFlex  fxLayoutAlign="end" fxLayoutGap="10">
-          <button mat-raised-button (click)="save()">Submit</button>&nbsp;
+          <button mat-raised-button (click)="save()">{{'Submit' | translate}}</button>&nbsp;
           <!--      <button mat-raised-button (click)="cancel()">Cancel</button>-->
         </div>
 

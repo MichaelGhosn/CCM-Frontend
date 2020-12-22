@@ -7,6 +7,7 @@ import {IAddOrganisation} from '../../Models/Admin/IAddOrganisation';
 import {IGetRole} from '../../Models/Admin/IGetRole';
 import {IGetOrganisation} from '../../Models/Admin/IGetOrganisation';
 import {IAddUser} from '../../Models/Admin/IAddUser';
+import {IGetUser} from '../../Models/Admin/IGetUser';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,16 @@ export class AdminService {
 
   AddUser(newUser: IAddUser): Observable<IResponseModel<string>> {
     return this.http.post<IResponseModel<string>>(this.authenticationService.backendApi + '/Users', newUser,
+      this.authenticationService.httpOptions);
+  }
+
+  GetUsers(): Observable<IResponseModel<Array<IGetUser>>> {
+    return this.http.get<IResponseModel<Array<IGetUser>>>(this.authenticationService.backendApi + '/Users',
+      this.authenticationService.httpOptions);
+  }
+
+  DeleteUser(userId: number): Observable<IResponseModel<any>> {
+    return this.http.delete<IResponseModel<any>>(this.authenticationService.backendApi + '/Users/' + userId,
       this.authenticationService.httpOptions);
   }
 

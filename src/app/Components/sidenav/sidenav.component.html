@@ -1,7 +1,7 @@
 <mat-drawer-container class="example-container" style="height: 100%">
   <mat-drawer mode="side" opened>
     <mat-list role="list" fxFlex="column">
-      <mat-list-item role="listitem" *ngFor="let action of actions" [ngClass]="action.class" (click)="action.action()"><mat-icon>{{action.icon}}</mat-icon>&nbsp;{{action.name}}</mat-list-item>
+      <mat-list-item role="listitem" *ngFor="let action of actions" [ngClass]="action.class" (click)="action.action()"><mat-icon>{{action.icon}}</mat-icon>&nbsp;{{action.name | translate}}</mat-list-item>
     </mat-list>
   </mat-drawer>
   <mat-drawer-content>

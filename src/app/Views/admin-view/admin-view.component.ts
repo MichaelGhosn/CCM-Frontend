@@ -12,6 +12,7 @@ import {IGetOrganisation} from '../../Models/Admin/IGetOrganisation';
 import {IGetRole} from '../../Models/Admin/IGetRole';
 import {IAddUser} from '../../Models/Admin/IAddUser';
 import {ISidenavAction} from '../../Models/Sidenav/ISidenavAction';
+import {IGetUser} from '../../Models/Admin/IGetUser';
 
 @Component({
   selector: 'app-admin-view',
@@ -54,6 +55,7 @@ export class AdminViewComponent implements OnInit {
               if (result) {
                 this.adminService.AddUser(result).subscribe((response: IResponseModel<string>) => {
                   this.notificationService.DisplaySnackBar(response.description);
+                  this.getUsers();
                 }, error => console.error(error));
               }
             });
@@ -71,12 +73,53 @@ export class AdminViewComponent implements OnInit {
     },
   ];
 
+
+  users = [];
+  isDeletingId = null;
+
   constructor(private dialog: MatDialog,
               private adminService: AdminService,
               private notificationService: NotificationService,
               private router: Router) { }
 
   ngOnInit(): void {
+    this.getUsers();
+  }
+
+
+
+  getUsers(): void {
+    this.adminService.GetUsers().subscribe(response => {
+      this.users = response.data.map(item => {
+          return {
+            id: item.id,
+            firstName: item.firstName,
+            lastName: item.lastName,
+            email: item.email,
+            roleName: item.role.name,
+            organisationName: item.organisation.name
+          };
+      });
+    });
+  }
+
+  displayedColumns = () => {
+    if (!(this.users && this.users.length)) {
+      return [];
+    }
+
+    let cols = Object.keys(this.users[0]);
+    cols = cols.filter(x => !x.toLowerCase().includes('id'));
+    cols.push('delete');
+    return cols;
+  }
+
+
+  deleteUser(userId): void {
+    this.adminService.DeleteUser(userId).subscribe(response => {
+      this.notificationService.DisplaySnackBar(response.description);
+      this.getUsers();
+    });
   }
 
 }

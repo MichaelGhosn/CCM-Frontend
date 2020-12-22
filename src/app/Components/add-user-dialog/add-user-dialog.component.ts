@@ -28,9 +28,7 @@ export class AddUserDialogComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    console.log(this.data);
-  }
+  ngOnInit(): void {}
 
   cancel(): void {
     this.dialogRef.close();
