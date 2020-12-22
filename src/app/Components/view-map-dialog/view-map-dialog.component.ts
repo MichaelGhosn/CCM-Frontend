@@ -45,10 +45,13 @@ export class ViewMapDialogComponent implements OnInit {
   save(): void {
 
     if (this.addReservationFormGroup.valid) {
+
+
+      // months are counted from 0 -> 11
       let date = this.addReservationFormGroup.controls.reservationDateFormControl.value.getFullYear()
         + '-' + (this.addReservationFormGroup.controls.reservationDateFormControl.value.getMonth() < 10 ?
-          0 + '' + this.addReservationFormGroup.controls.reservationDateFormControl.value.getMonth()
-          : this.addReservationFormGroup.controls.reservationDateFormControl.value.getMonth())
+          0 + '' + (this.addReservationFormGroup.controls.reservationDateFormControl.value.getMonth() + 1)
+          : (this.addReservationFormGroup.controls.reservationDateFormControl.value.getMonth() + 1))
         + '-' + (this.addReservationFormGroup.controls.reservationDateFormControl.value.getDate() < 10 ?
           0 + '' + this.addReservationFormGroup.controls.reservationDateFormControl.value.getDate()
           : this.addReservationFormGroup.controls.reservationDateFormControl.value.getDate())
@@ -57,7 +60,6 @@ export class ViewMapDialogComponent implements OnInit {
       const start = date + this.addReservationFormGroup.controls.startHourFormControl.value + ':00';
       const end = date + this.addReservationFormGroup.controls.endHourFormControl.value + ':00';
       date = date + '00:00:00';
-
 
       this.dialogRef.close({
         userId: Number(jwt_decode<ITokenModel>(localStorage.getItem('_token')).UserId),

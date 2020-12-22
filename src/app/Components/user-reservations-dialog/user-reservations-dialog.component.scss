@@ -1,0 +1,39 @@
+.mat-row {
+  height: auto;
+}
+
+.mat-cell {
+  padding: 16px 16px 16px 16px;
+}
+
+//
+//.tablePaginatorDivClass {
+//  margin-left: 0.1%;
+//  margin-right: 0.1%;
+//  overflow-y: scroll;
+//  overflow-x: scroll;
+//}
+//
+//.tablePaginatorDivClass::-webkit-scrollbar {
+//  -webkit-appearance: none;
+//}
+//
+//.tablePaginatorDivClass::-webkit-scrollbar:vertical {
+//  width: 8px;
+//}
+//
+//.tablePaginatorDivClass::-webkit-scrollbar:horizontal {
+//  height: 10px;
+//}
+//
+//.tablePaginatorDivClass::-webkit-scrollbar-thumb {
+//  border-radius: 8px;
+//  border: 2px solid white; /* should match background, can't be transparent */
+//  background-color: rgba(0, 0, 0, .5);
+//}
+
+.matPaginatorClass {
+  //margin-top: 10px;
+  //position: absolute;
+  width: available;
+}

@@ -13,6 +13,7 @@ import {IMap} from '../../Models/User/IMap';
 import {environment} from '../../../environments/environment';
 import {ViewMapDialogComponent} from '../../Components/view-map-dialog/view-map-dialog.component';
 import {AdjustOpeningTimeDialogComponent} from '../../Components/adjust-opening-time-dialog/adjust-opening-time-dialog.component';
+import {UserReservationsDialogComponent} from '../../Components/user-reservations-dialog/user-reservations-dialog.component';
 
 @Component({
   selector: 'app-user-view',
@@ -27,6 +28,16 @@ export class UserViewComponent implements OnInit {
 
   actions: Array<ISidenavAction> = [
     {
+      name: 'Reservations',
+      icon: 'history',
+      class: 'actions-class',
+      action: () => {
+        const historyDialog = this.dialog.open(UserReservationsDialogComponent, {
+          width: '100%'
+        });
+      }
+    },
+    {
       name: 'Logout',
       icon: 'backspace',
       class: 'actions-class',
@@ -34,7 +45,7 @@ export class UserViewComponent implements OnInit {
         this.router.navigate(['login']);
         localStorage.removeItem('_token');
       }
-    },
+    }
   ];
 
   constructor(private router: Router,

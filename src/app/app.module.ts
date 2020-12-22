@@ -40,6 +40,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { AdjustOpeningTimeDialogComponent } from './Components/adjust-opening-time-dialog/adjust-opening-time-dialog.component';
+import { UserReservationsDialogComponent } from './Components/user-reservations-dialog/user-reservations-dialog.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -58,6 +61,7 @@ import { AdjustOpeningTimeDialogComponent } from './Components/adjust-opening-ti
     AddMapDialogComponent,
     ViewMapDialogComponent,
     AdjustOpeningTimeDialogComponent,
+    UserReservationsDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,9 +95,11 @@ import { AdjustOpeningTimeDialogComponent } from './Components/adjust-opening-ti
     MatDatepickerModule,
     MatNativeDateModule,
     NgxMaterialTimepickerModule,
+    MatPaginatorModule,
+    MatTableModule,
   ],
   entryComponents: [AddOrganisationDialogComponent, AddUserDialogComponent, ViewMapDialogComponent,
-          AddMapDialogComponent, AdjustOpeningTimeDialogComponent],
+          AddMapDialogComponent, AdjustOpeningTimeDialogComponent, UserReservationsDialogComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
