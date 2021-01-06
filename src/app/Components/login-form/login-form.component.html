@@ -1,0 +1,28 @@
+<mat-card class="example-card">
+
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{'login.title' | translate}}</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content style="margin: auto">
+
+    <form [formGroup]="loginForm">
+      <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label>{{'login.username' | translate}}</mat-label>
+        <input matInput formControlName="username" type="email">
+        <mat-error *ngIf="loginForm.get('username').invalid">{{'login.invalid' | translate}}</mat-error>
+      </mat-form-field><br>
+      <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label>{{'login.password' | translate}}</mat-label>
+        <input matInput formControlName="password" type="password">
+      </mat-form-field>
+    </form>
+
+  </mat-card-content>
+
+  <mat-card-actions fxLayoutAlign="center center" >
+    <button mat-button fxFlex="50" (click)="Login()">{{'login.login' | translate}}</button>
+  </mat-card-actions>
+
+</mat-card>

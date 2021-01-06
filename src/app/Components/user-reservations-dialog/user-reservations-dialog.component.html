@@ -1,0 +1,34 @@
+
+  <div class="tablePaginatorDivClass">
+    <table mat-table [dataSource]="reservations" class="mat-elevation-z1 mt-3" style="width: 100%;">
+
+      <ng-container *ngFor="let col of displayedColumns(), let i = index" [matColumnDef]="col" >
+        <th mat-header-cell *matHeaderCellDef> {{col | translate}} </th>
+        <td mat-cell *matCellDef="let element">
+          <span *ngIf="col === 'link'">
+             <a [href]="element[col]" target="_blank">{{'link' | translate}}</a>
+          </span>
+          <span *ngIf="col === 'delete'">
+             <button mat-icon-button *ngIf="isDeletingId !== element.reservationId" (click)="isDeletingId = element.reservationId"><mat-icon>delete</mat-icon></button>
+             <button mat-icon-button *ngIf="isDeletingId === element.reservationId" (click)="deleteReservation(element.reservationId)"><mat-icon>delete_forever</mat-icon></button>
+          </span>
+          <span *ngIf="col !== 'link' && col !== 'delete'">
+          {{element[col]}}
+          </span>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns()"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns();"></tr>
+    </table>
+
+    <mat-paginator [length]="pagination.totalItemCount"
+                   [pageSize]="pagination.pageSize"
+                   [pageSizeOptions]="pageSizeOptions"
+                   [pageIndex]="pagination.pageNumber"
+                   (page)="pageChanged($event)"
+                   class="matPaginatorClass">
+    </mat-paginator>
+  </div>
+
+
